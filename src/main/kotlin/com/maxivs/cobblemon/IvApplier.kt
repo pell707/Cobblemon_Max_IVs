@@ -39,6 +39,7 @@ object IvApplier {
      * [com.maxivs.cobblemon.event.PokemonEventListener] once Cobblemon has
      * had a chance to assign an original trainer.
      */
+    @JvmStatic 
     fun applyUnconditionally(pokemon: Pokemon) {
         val config = ConfigManager.config
         if (!config.enabled) return
@@ -64,6 +65,7 @@ object IvApplier {
      * spawning and again after a battle starts); repeat calls are just a
      * harmless no-op write of the same values.
      */
+    @JvmStatic
     fun applyMaxIvsIfEnabled(pokemon: Pokemon) {
         val config = ConfigManager.config
         if (!config.enabled) return
