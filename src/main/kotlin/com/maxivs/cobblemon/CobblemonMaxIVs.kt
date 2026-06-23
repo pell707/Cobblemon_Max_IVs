@@ -7,27 +7,11 @@ import com.maxivs.cobblemon.event.PokemonEventListener
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-/**
- * Entrypoint for Cobblemon Max IVs.
- *
- * What this mod does, in one sentence: every Pokémon that exists on the
- * server — wild, trainer-owned (including addons like Radical Cobblemon
- * Trainers), player-owned, hatched, gifted, whatever — gets every IV stat
- * set to a configurable value (31/perfect by default).
- *
- * How: a Mixin into the [com.cobblemon.mod.common.pokemon.Pokemon]
- * constructor catches every Pokémon unconditionally the instant it's
- * created, and an event listener on [com.cobblemon.mod.common.api.events.CobblemonEvents.POKEMON_ENTITY_SPAWN]
- * re-applies the value with full category awareness (wild/trainer/player)
- * once Cobblemon has assigned the Pokémon's original trainer type. See
- * [IvApplier] for the actual stat-writing logic and [MaxIvsConfig] for the
- * available settings (config/cobblemonmaxivs.json).
- */
-object CobblemonMaxIVs : ModInitializer {
+object CobblemonMaxIVs {
     const val MOD_ID = "cobblemonmaxivs"
     val logger: Logger = LoggerFactory.getLogger(MOD_ID)
 
-    override fun onInitialize() {
+    fun onInitialize() {
         ConfigManager.load()
         PokemonEventListener.register()
 
@@ -43,5 +27,11 @@ object CobblemonMaxIVs : ModInitializer {
             ConfigManager.config.applyToTrainerPokemon,
             ConfigManager.config.applyToPlayerPokemon
         )
+    }
+}
+
+class CobblemonMaxIvsEntrypoint : ModInitializer {
+    override fun onInitialize() {
+        CobblemonMaxIVs.onInitialize()
     }
 }
