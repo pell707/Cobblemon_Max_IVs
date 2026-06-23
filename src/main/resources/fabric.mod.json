@@ -15,7 +15,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.maxivs.cobblemon.CobblemonMaxIVs"
+      "com.maxivs.cobblemon.CobblemonMaxIvsEntrypoint"
     ]
   },
   "mixins": [
