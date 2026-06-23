@@ -22,8 +22,12 @@ jobs:
         with:
           gradle-version: '8.13'
 
+      - name: Clear Loom cache (avoid stale state from prior failed runs)
+        run: rm -rf ~/.gradle/caches/fabric-loom
+        continue-on-error: true
+
       - name: Build
-        run: gradle build --no-daemon
+        run: gradle build --no-daemon --stacktrace
 
       - name: Upload built jar(s)
         uses: actions/upload-artifact@v4
