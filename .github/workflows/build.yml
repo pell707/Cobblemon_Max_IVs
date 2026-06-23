@@ -17,10 +17,10 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Gradle 8.13
+      - name: Set up Gradle 8.14
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '8.13'
+          gradle-version: '8.14'
 
       - name: Clear Loom cache (avoid stale state from prior failed runs)
         run: rm -rf ~/.gradle/caches/fabric-loom
