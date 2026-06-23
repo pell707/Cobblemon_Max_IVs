@@ -22,15 +22,8 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
-      - name: Generate Gradle wrapper (if missing)
-        run: |
-          if [ ! -f gradlew ]; then
-            gradle wrapper --gradle-version 8.10.2
-          fi
-          chmod +x gradlew
-
       - name: Build
-        run: ./gradlew build --no-daemon
+        run: gradle build --no-daemon
 
       - name: Upload built jar(s)
         uses: actions/upload-artifact@v4
