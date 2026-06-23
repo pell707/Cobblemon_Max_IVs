@@ -1,0 +1,6 @@
+accessWidener	v2	named
+
+# No access widening currently required: Pokemon.ivs, Pokemon.setIV(), and the
+# Stats constants we use are all public in Cobblemon's API. This file is kept
+# as a placeholder in case future Cobblemon versions require widening to reach
+# a private field (e.g. if `setIV` is ever made internal).

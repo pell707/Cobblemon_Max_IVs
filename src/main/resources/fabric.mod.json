@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblemonmaxivs",
+  "version": "${version}",
+  "name": "Cobblemon Max IVs",
+  "description": "Sets every Pokémon's IVs to a configurable maximum (default 31) for wild spawns, trainer parties (including RCTrainers), gifts, eggs, and any other Pokémon created on the server.",
+  "authors": [
+    "you"
+  ],
+  "contact": {
+    "homepage": "https://example.com"
+  },
+  "license": "MIT",
+  "icon": "assets/cobblemonmaxivs/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.maxivs.cobblemon.CobblemonMaxIVs"
+    ]
+  },
+  "mixins": [
+    "cobblemonmaxivs.mixins.json"
+  ],
+  "accessWidener": "cobblemonmaxivs.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "fabric-api": "*",
+    "fabric-language-kotlin": "*",
+    "cobblemon": ">=1.7.0",
+    "minecraft": "~1.21.1"
+  }
+}
