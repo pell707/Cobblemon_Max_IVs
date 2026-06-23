@@ -75,7 +75,7 @@ object IvApplier {
         val target = config.clampedIvValue()
         for (stat in ALL_STATS) {
             if (config.onlyRaiseNeverLower) {
-                val current = pokemon.ivs.getOrCoerce(stat)
+                val current = pokemon.ivs[stat]
                 if (current >= target) continue
             }
             // Pokemon#setIV both writes the IV and, for HP specifically,
