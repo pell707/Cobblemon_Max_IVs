@@ -3,9 +3,9 @@ package com.maxivs.cobblemon.command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
 import com.maxivs.cobblemon.ConfigManager
-import net.minecraft.commands.CommandSourceStack
-import net.minecraft.commands.Commands
-import net.minecraft.network.chat.Component
+import net.minecraft.server.command.CommandManager
+import net.minecraft.server.command.ServerCommandSource
+import net.minecraft.text.Text
 
 /**
  * Registers `/maxivs reload`, letting server admins tweak
@@ -14,22 +14,22 @@ import net.minecraft.network.chat.Component
  */
 object MaxIvsCommand {
 
-    fun register(dispatcher: CommandDispatcher<CommandSourceStack>) {
+    fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
-            Commands.literal("maxivs")
-                .requires { it.hasPermission(2) }
+            CommandManager.literal("maxivs")
+                .requires { it.hasPermissionLevel(2) }
                 .then(
-                    Commands.literal("reload").executes(::reload)
+                    CommandManager.literal("reload").executes(::reload)
                 )
         )
     }
 
-    private fun reload(context: CommandContext<CommandSourceStack>): Int {
+    private fun reload(context: CommandContext<ServerCommandSource>): Int {
         ConfigManager.load()
         val config = ConfigManager.config
-        context.source.sendSuccess(
+        context.source.sendFeedback(
             {
-                Component.literal(
+                Text.literal(
                     "Cobblemon Max IVs config reloaded. enabled=${config.enabled}, value=${config.clampedIvValue()}, " +
                         "wild=${config.applyToWildPokemon}, trainer=${config.applyToTrainerPokemon}, player=${config.applyToPlayerPokemon}"
                 )
